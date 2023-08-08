@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+message Todo{
+    string id = 1;
+    string title = 2;
+    bool completed = 6;
+    string noteId = 3;
+}
+
+message Note {
+  string id = 1;
+  string content = 2;
+  int64 color = 3;
+  int64 timeInEpoch = 4;
+}
+
+
+message NoteAllResponse {
+  repeated NoteWithTodos notes = 1;
+}
+
+message NoteWithTodos {
+  Note note = 1;
+  repeated Todo todos = 2;
+}
+
+
+message TodoAllRequest {
+  Note note = 1;
+}
+
+message TodoList {
+  repeated Todo todos = 1;
+}
+
+message Empty {
+}
+
+service NoteService {
+  rpc All (Empty) returns (stream NoteAllResponse);
+  rpc Create (stream NoteWithTodos) returns (Empty);
+  rpc Update (stream NoteWithTodos) returns (Empty);
+  rpc Delete (Note) returns (Empty);
+
+  rpc AllTodos (TodoAllRequest) returns (stream TodoList);
+  rpc CreateTodo (stream TodoList) returns (Empty);
+  rpc UpdateTodo (stream TodoList) returns (Empty);
+  rpc UpdateSingleTodo (Todo) returns (Empty);
+  rpc DeleteTodo (Todo) returns (Empty);
+  rpc DeleteAllTodos (stream TodoList) returns (Empty);
+}

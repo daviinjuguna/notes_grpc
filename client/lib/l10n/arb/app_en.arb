@@ -1,0 +1,13 @@
+{
+    "@@locale": "en",
+    "title": "Notes gRPC",
+    "addNote": "Add note",
+    "updateNote": "Update note",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "create": "Create",
+    "delete": "Delete",
+    "confirmDelete": "Are you sure you want to delete?",
+    "edit": "Edit",
+    "addTodo": "Add todo"
+}
